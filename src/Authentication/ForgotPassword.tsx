@@ -4,10 +4,10 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 
 import { StackNavigationProps, Routes } from "../components/Navigation";
+import TextInput from "../components/Forms/TextInput";
 import { Box, Container, Text, Button } from "../components";
 
 import Footer from "./components/Footer";
-import TextInput from "./components/Forms/TextInput";
 
 const ForgotPasswordSchema = Yup.object().shape({
   email: Yup.string().email("Invalid Email").required("Required"),
@@ -33,7 +33,7 @@ const ForgotPassword = ({
   );
 
   return (
-    <Container {...{ footer }}>
+    <Container pattern={2} {...{ footer }}>
       <Box padding="xl" flex={1} justifyContent="center">
         <Text variant="title1" textAlign="center" marginBottom="l">
           Forgot password?
