@@ -3,7 +3,10 @@ import { TextInput as TextField } from "react-native";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-import { StackNavigationProps, Routes } from "../components/Navigation";
+import {
+  StackNavigationProps,
+  AuthenticationRoutes,
+} from "../components/Navigation";
 import TextInput from "../components/Forms/TextInput";
 import { Container, Button, Text, Box } from "../components";
 
@@ -20,7 +23,9 @@ const SignUpSchema = Yup.object().shape({
     .required("Required"),
 });
 
-const SignUp = ({ navigation }: StackNavigationProps<Routes, "SignUp">) => {
+const SignUp = ({
+  navigation,
+}: StackNavigationProps<AuthenticationRoutes, "SignUp">) => {
   const { handleChange, handleBlur, handleSubmit, errors, touched } = useFormik(
     {
       validationSchema: SignUpSchema,

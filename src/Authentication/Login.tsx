@@ -2,8 +2,12 @@ import React, { useRef } from "react";
 import { TextInput as TextField } from "react-native";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { BorderlessButton } from "react-native-gesture-handler";
+import { CompositeNavigationProp } from "@react-navigation/native";
+import { DrawerNavigationProp } from "@react-navigation/drawer";
+import { StackNavigationProp } from "@react-navigation/stack";
 
-import { StackNavigationProps, Routes } from "../components/Navigation";
+import { AuthenticationRoutes, HomeRoutes } from "../components/Navigation";
 import TextInput from "../components/Forms/TextInput";
 import Checkbox from "../components/Forms/Checkbox";
 import { Container, Button, Text, Box } from "../components";
@@ -18,7 +22,14 @@ const LoginSchema = Yup.object().shape({
     .required("Required"),
 });
 
-const Login = ({ navigation }: StackNavigationProps<Routes, "Login">) => {
+interface LoginProps {
+  navigation: CompositeNavigationProp<
+    StackNavigationProp<AuthenticationRoutes, "Login">,
+    DrawerNavigationProp<HomeRoutes, "OutfitIdeas">
+  >;
+}
+
+const Login = ({ navigation }: LoginProps) => {
   const {
     handleChange,
     handleBlur,
@@ -30,7 +41,7 @@ const Login = ({ navigation }: StackNavigationProps<Routes, "Login">) => {
   } = useFormik({
     validationSchema: LoginSchema,
     initialValues: { email: "", password: "", remember: true },
-    onSubmit: (values) => console.log(values),
+    onSubmit: () => navigation.navigate("OutfitIdeas"),
   });
 
   const footer = (
@@ -84,18 +95,25 @@ const Login = ({ navigation }: StackNavigationProps<Routes, "Login">) => {
             returnKeyLabel="done"
             onSubmitEditing={() => handleSubmit()}
           />
-          <Box flexDirection="row" justifyContent="space-between">
+          <Box
+            flexDirection="row"
+            justifyContent="space-between"
+            marginVertical="m"
+            alignItems="center"
+          >
             <Checkbox
               label="Remember me"
               checked={values.remember}
               onChange={() => setFieldValue("remember", !values.remember)}
             />
-            <Button
-              variant="transparent"
+            <BorderlessButton
+              borderless={false}
               onPress={() => navigation.navigate("ForgotPassword")}
             >
-              <Text color="primary">Forgot password</Text>
-            </Button>
+              <Text variant="button" color="primary">
+                Forgot password
+              </Text>
+            </BorderlessButton>
           </Box>
           <Box alignItems="center" marginTop="m">
             <Button

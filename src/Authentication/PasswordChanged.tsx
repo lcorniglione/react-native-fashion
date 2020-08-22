@@ -1,6 +1,9 @@
 import React from "react";
 
-import { StackNavigationProps, Routes } from "../components/Navigation";
+import {
+  StackNavigationProps,
+  AuthenticationRoutes,
+} from "../components/Navigation";
 import {
   Container,
   Box,
@@ -14,7 +17,7 @@ const SIZE = 80;
 
 const PasswordChanged = ({
   navigation,
-}: StackNavigationProps<Routes, "PasswordChanged">) => {
+}: StackNavigationProps<AuthenticationRoutes, "PasswordChanged">) => {
   const footer = (
     <Box justifyContent="center" alignItems="center">
       <RoundedIconButton
