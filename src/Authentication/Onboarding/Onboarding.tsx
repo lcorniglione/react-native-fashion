@@ -9,10 +9,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { useTheme } from "@shopify/restyle";
 
-import {
-  StackNavigationProps,
-  AuthenticationRoutes,
-} from "../../components/Navigation";
+import { AuthNavigationProps } from "../../components/Navigation";
 import { Theme, makeStyles } from "../../components";
 
 import Slide, { SLIDE_HEIGHT } from "./Slide";
@@ -74,9 +71,7 @@ const slides = [
 
 export const assets = slides.map((slide) => slide.picture.uri);
 
-const Onboarding = ({
-  navigation,
-}: StackNavigationProps<AuthenticationRoutes, "Onboarding">) => {
+const Onboarding = ({ navigation }: AuthNavigationProps<"Onboarding">) => {
   const styles = useStyles();
   const theme = useTheme();
   const scrollRef = useRef<Animated.ScrollView>(null);

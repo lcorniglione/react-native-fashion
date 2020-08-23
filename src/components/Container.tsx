@@ -3,6 +3,7 @@ import { Image, Dimensions, StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTheme } from "@shopify/restyle";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import Constants from "expo-constants";
 
 import { Box } from "./Theme";
 
@@ -29,7 +30,10 @@ const Container = ({ children, footer, pattern }: ContainerProps) => {
   const asset = assets[pattern];
   return (
     <KeyboardAwareScrollView scrollEnabled={false}>
-      <Box height={vHeight} backgroundColor="secondary">
+      <Box
+        height={vHeight + Constants.statusBarHeight}
+        backgroundColor="secondary"
+      >
         <Box backgroundColor="white">
           <Box
             borderBottomLeftRadius="xl"
@@ -56,12 +60,13 @@ const Container = ({ children, footer, pattern }: ContainerProps) => {
               top: -height * 0.61,
             }}
           />
-
           <Box
             borderRadius="xl"
             borderTopLeftRadius={0}
             backgroundColor="white"
             flex={1}
+            justifyContent="center"
+            padding="xl"
           >
             {children}
           </Box>
