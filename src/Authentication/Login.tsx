@@ -31,7 +31,7 @@ const Login = ({ navigation }: AuthNavigationProps<"Login">) => {
   } = useFormik({
     validationSchema: LoginSchema,
     initialValues: { email: "", password: "", remember: true },
-    onSubmit: () => navigation.navigate("Home"),
+    onSubmit: () => setTimeout(() => navigation.navigate("Home"), 100),
   });
 
   const footer = (

@@ -1,6 +1,6 @@
 import React from "react";
 import { Image, Dimensions } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { DrawerActions, useNavigation } from "@react-navigation/native";
 import { useTheme } from "@shopify/restyle";
 
 import { Box, Text, Header, Theme } from "../../components";
@@ -53,6 +53,7 @@ const items: DrawerItemProps[] = [
 ];
 
 const Drawer = () => {
+  const navigation = useNavigation();
   const theme = useTheme<Theme>();
   return (
     <Box flex={1}>
@@ -68,8 +69,12 @@ const Drawer = () => {
         >
           <Header
             title="Menu"
-            left={{ icon: "x", onPress: () => true }}
+            left={{
+              icon: "x",
+              onPress: () => navigation.dispatch(DrawerActions.closeDrawer()),
+            }}
             right={{ icon: "shopping-bag", onPress: () => true }}
+            dark
           />
         </Box>
       </Box>
