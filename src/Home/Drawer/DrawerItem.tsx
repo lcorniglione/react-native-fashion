@@ -20,7 +20,7 @@ const DrawerItem = ({ icon, color, label, screen }: DrawerItemProps) => {
         backgroundColor: "white",
       }}
     >
-      <Box flexDirection="row" alignItems="center" padding="m">
+      <Box flexDirection="row" alignItems="center" padding="s">
         <RoundedIcon
           name={icon}
           size={36}
