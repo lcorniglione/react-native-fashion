@@ -28,4 +28,3 @@ const TopCurve = ({ footerHeight }: TopCurveProps) => {
 };
 
 export default TopCurve;
-//M 0 1 A 0 0, 0, 0, 0, 1 0 L 1 1

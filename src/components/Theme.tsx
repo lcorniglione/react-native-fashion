@@ -8,6 +8,7 @@ export const theme = createTheme({
     text: "rgba(12, 13, 52, 0.7)",
     white: "white",
     gray: "#F4F0EF",
+    darkGray: "#808080",
     lightGray: "#FAFAFA",
     danger: "#FF0058",
     primaryLight: "#E7F9F7",
