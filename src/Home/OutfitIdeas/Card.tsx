@@ -6,10 +6,9 @@ import Animated, {
 } from "react-native-reanimated";
 import { StyleSheet, Dimensions, ImageRequireSource } from "react-native";
 import { mixColor, mix, usePanGestureHandler } from "react-native-redash";
-import { useTheme } from "@shopify/restyle";
 import { PanGestureHandler } from "react-native-gesture-handler";
 
-import { Box, Theme } from "../../components";
+import { Box, useTheme } from "../../components";
 
 import { useSpring } from "./Animations";
 
@@ -25,7 +24,7 @@ interface CardProps {
 }
 
 const Card = ({ position, onSwipe, source, step }: CardProps) => {
-  const theme = useTheme<Theme>();
+  const theme = useTheme();
   const backgroundColor = mixColor(position, "#C9E9E7", "#74BCB8");
   const translateYOffset = mix(position, 0, -50);
   const scale = mix(position, 1, 0.9);

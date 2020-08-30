@@ -5,9 +5,8 @@ import {
   TextInputProps as TextFieldProps,
 } from "react-native";
 import { Feather as Icon } from "@expo/vector-icons";
-import { useTheme } from "@shopify/restyle";
 
-import { Box } from "../Theme";
+import { Box, useTheme } from "../Theme";
 import RoundedIcon from "../RoundedIcon";
 
 interface TextInputProps extends TextFieldProps {
@@ -48,7 +47,7 @@ const TextInput = forwardRef<TextField, TextInputProps>(
           <RoundedIcon
             name={!error ? "check" : "x"}
             size={SIZE}
-            color={"white"}
+            color="background"
             backgroundColor={!error ? "primary" : "danger"}
           />
         )}

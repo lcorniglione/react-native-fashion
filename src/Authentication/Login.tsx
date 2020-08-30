@@ -10,6 +10,7 @@ import Checkbox from "../components/Forms/Checkbox";
 import { Container, Button, Text, Box } from "../components";
 
 import Footer from "./components/Footer";
+import { CommonActions } from "@react-navigation/native";
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email("Invalid Email").required("Required"),
@@ -31,7 +32,13 @@ const Login = ({ navigation }: AuthNavigationProps<"Login">) => {
   } = useFormik({
     validationSchema: LoginSchema,
     initialValues: { email: "", password: "", remember: true },
-    onSubmit: () => setTimeout(() => navigation.navigate("Home"), 100),
+    onSubmit: () =>
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{ name: "Home" }],
+        })
+      ),
   });
 
   const footer = (

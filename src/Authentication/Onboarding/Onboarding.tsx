@@ -7,10 +7,9 @@ import Animated, {
   interpolate,
   Extrapolate,
 } from "react-native-reanimated";
-import { useTheme } from "@shopify/restyle";
 
 import { AuthNavigationProps } from "../../components/Navigation";
-import { Theme, makeStyles } from "../../components";
+import { Theme, makeStyles, useTheme } from "../../components";
 
 import Slide, { SLIDE_HEIGHT } from "./Slide";
 import Subslide from "./Subslide";
@@ -163,7 +162,7 @@ const Onboarding = ({ navigation }: AuthNavigationProps<"Onboarding">) => {
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: theme.colors.background,
   },
   slider: {
     height: SLIDE_HEIGHT,
@@ -174,7 +173,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   footerContent: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: theme.colors.background,
     borderTopLeftRadius: theme.borderRadii.xl,
   },
   pagination: {

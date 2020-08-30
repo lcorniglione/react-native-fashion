@@ -1,8 +1,8 @@
 import React from "react";
 import { Dimensions } from "react-native";
-import { useTheme } from "@shopify/restyle";
+import moment from "moment";
 
-import { Theme, Box } from "../../../components";
+import { Theme, Box, useTheme } from "../../../components";
 
 import Underlay, { MARGIN } from "./Underlay";
 import { lerp } from "./Scale";
@@ -15,37 +15,40 @@ export interface DataPoint {
   date: number;
   value: number;
   color: keyof Theme["colors"];
+  id: number;
 }
 
 interface GraphProps {
   data: DataPoint[];
+  startDate: number;
+  numberOfMonths: number;
 }
 
-const Graph = ({ data }: GraphProps) => {
-  const theme = useTheme<Theme>();
+const Graph = ({ data, startDate, numberOfMonths }: GraphProps) => {
+  const theme = useTheme();
   const canvasWidth = wWidth - theme.spacing.m * 2;
   const canvasHeight = canvasWidth * ASPECT_RATIO;
   const width = canvasWidth - theme.spacing[MARGIN];
   const height = canvasHeight - theme.spacing[MARGIN];
-  const step = width / data.length;
+  const step = width / numberOfMonths;
   const values = data.map((p) => p.value);
-  const dates = data.map((p) => p.date);
-  const minX = Math.min(...dates);
-  const maxX = Math.max(...dates);
   const minY = Math.min(...values);
   const maxY = Math.max(...values);
   return (
     <Box paddingBottom={MARGIN} paddingLeft={MARGIN} marginTop="xl">
-      <Underlay dates={dates} minY={minY} maxY={maxY} step={step} />
+      <Underlay
+        numberOfMonths={numberOfMonths}
+        startDate={startDate}
+        minY={minY}
+        maxY={maxY}
+        step={step}
+      />
       <Box width={width} height={height}>
-        {data.map((point, i) => {
-          if (point.value === 0) {
-            return null;
-          }
-
+        {data.map((point) => {
+          const i = moment(point.date).diff(moment(startDate), "month");
           return (
             <Box
-              key={point.date}
+              key={point.id}
               position="absolute"
               width={step}
               left={i * step}

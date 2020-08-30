@@ -1,9 +1,8 @@
 import React from "react";
 import { StyleSheet } from "react-native";
 import moment from "moment";
-import { useTheme } from "@shopify/restyle";
 
-import { Box, Text, Theme } from "../../../components";
+import { Box, Text, useTheme } from "../../../components";
 
 import { lerp } from "./Scale";
 
@@ -11,14 +10,21 @@ export const MARGIN = "xl";
 const ROW_HEIGHT = 16;
 
 interface UnderlayProps {
-  dates: number[];
   minY: number;
   maxY: number;
   step: number;
+  startDate: number;
+  numberOfMonths: number;
 }
 
-const Underlay = ({ dates, minY, maxY, step }: UnderlayProps) => {
-  const theme = useTheme<Theme>();
+const Underlay = ({
+  minY,
+  maxY,
+  step,
+  startDate,
+  numberOfMonths,
+}: UnderlayProps) => {
+  const theme = useTheme();
   return (
     <Box style={StyleSheet.absoluteFill}>
       <Box flex={1} justifyContent="space-between">
@@ -49,13 +55,16 @@ const Underlay = ({ dates, minY, maxY, step }: UnderlayProps) => {
         flexDirection="row"
         alignItems="center"
       >
-        {dates.map((date, i) => (
-          <Box width={step}>
-            <Text key={i} color="darkGray" textAlign="center">
-              {moment(date).format("MMM")}
-            </Text>
-          </Box>
-        ))}
+        {new Array(numberOfMonths)
+          .fill(0)
+          .map((_, i) => moment(moment(startDate).add(i + 1, "month")))
+          .map((date, i) => (
+            <Box width={step} key={i}>
+              <Text color="darkGray" textAlign="center">
+                {date.format("MMM")}
+              </Text>
+            </Box>
+          ))}
       </Box>
     </Box>
   );

@@ -1,15 +1,14 @@
 import React from "react";
 import Svg, { Path } from "react-native-svg";
-import { useTheme } from "@shopify/restyle";
 
-import { Theme } from "../../components";
+import { useTheme } from "../../components";
 
 interface TopCurveProps {
   footerHeight: number;
 }
 
 const TopCurve = ({ footerHeight }: TopCurveProps) => {
-  const theme = useTheme<Theme>();
+  const theme = useTheme();
   const size = theme.borderRadii.xl;
   return (
     <Svg

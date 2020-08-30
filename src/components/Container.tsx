@@ -1,11 +1,10 @@
 import React, { ReactNode } from "react";
 import { Image, Dimensions, StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useTheme } from "@shopify/restyle";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import Constants from "expo-constants";
 
-import { Box } from "./Theme";
+import { Box, useTheme } from "./Theme";
 
 export const assets = [
   require("./assets/patterns/1.png"),
@@ -34,7 +33,7 @@ const Container = ({ children, footer, pattern }: ContainerProps) => {
         height={vHeight + Constants.statusBarHeight}
         backgroundColor="secondary"
       >
-        <Box backgroundColor="white">
+        <Box backgroundColor="background">
           <Box
             borderBottomLeftRadius="xl"
             overflow="hidden"
@@ -63,7 +62,7 @@ const Container = ({ children, footer, pattern }: ContainerProps) => {
           <Box
             borderRadius="xl"
             borderTopLeftRadius={0}
-            backgroundColor="white"
+            backgroundColor="background"
             flex={1}
             justifyContent="center"
             padding="xl"

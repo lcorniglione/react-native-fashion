@@ -1,8 +1,7 @@
 import React, { ReactNode } from "react";
 import Svg, { Path } from "react-native-svg";
-import { useTheme } from "@shopify/restyle";
 
-import { Box } from "../../components";
+import { Box, useTheme } from "../../components";
 
 const Google = () => (
   <Svg width="20" height="20" viewBox="0 0 512 512">
@@ -50,7 +49,7 @@ const SocialIcon = ({ children }: SocialIconProps) => {
   return (
     <Box
       marginHorizontal="s"
-      backgroundColor="white"
+      backgroundColor="background"
       width={SIZE}
       height={SIZE}
       borderRadius="l"

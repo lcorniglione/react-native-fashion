@@ -1,14 +1,13 @@
 import React, { useState, useRef } from "react";
 import { ScrollView } from "react-native-gesture-handler";
 import { Dimensions } from "react-native";
-import { useTheme } from "@shopify/restyle";
 import {
   Transition,
   Transitioning,
   TransitioningView,
 } from "react-native-reanimated";
 
-import { Box, Header, Theme } from "../../components";
+import { Box, Header, useTheme } from "../../components";
 import { HomeNavigationProps } from "../../components/Navigation";
 
 import Footer from "./Footer";
@@ -73,16 +72,17 @@ const FavouriteOutfits = ({
 }: HomeNavigationProps<"FavouriteOutfits">) => {
   const transition = (
     <Transition.Together>
-      <Transition.Change interpolation="easeInOut" durationMs={1000} />
+      <Transition.Out type="fade" />
+      <Transition.In type="fade" />
     </Transition.Together>
   );
   const list = useRef<TransitioningView | null>(null);
-  const theme = useTheme<Theme>();
+  const theme = useTheme();
   const [outfits, setOutfits] = useState(defaultOutfits);
   const width = (wWidth - theme.spacing.m * 3) / 2;
   const [footerHeight, setFooterHeight] = useState(0);
   return (
-    <Box flex={1} backgroundColor="white">
+    <Box flex={1} backgroundColor="background">
       <Header
         title="Outfit Ideas"
         left={{ icon: "menu", onPress: () => navigation.openDrawer() }}
@@ -99,14 +99,14 @@ const FavouriteOutfits = ({
             <Box flexDirection="row">
               <Box marginRight="m">
                 {outfits
-                  .filter(({ id }) => id % 2 !== 0)
+                  .filter((_, i) => i % 2 !== 0)
                   .map((outfit) => (
                     <Outfit key={outfit.id} {...{ outfit, width }} />
                   ))}
               </Box>
               <Box>
                 {outfits
-                  .filter(({ id }) => id % 2 === 0)
+                  .filter((_, i) => i % 2 === 0)
                   .map((outfit) => (
                     <Outfit key={outfit.id} {...{ outfit, width }} />
                   ))}

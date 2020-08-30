@@ -1,9 +1,8 @@
 import React from "react";
 import { Image, Dimensions } from "react-native";
-import { useTheme } from "@shopify/restyle";
 import { BorderlessButton } from "react-native-gesture-handler";
 
-import { Box, Text } from "../components/Theme";
+import { Box, Text, useTheme } from "../components/Theme";
 import { Button } from "../components";
 import { AuthNavigationProps } from "../components/Navigation";
 
@@ -20,7 +19,7 @@ export const assets = [picture.src];
 const Welcome = ({ navigation }: AuthNavigationProps<"Welcome">) => {
   const theme = useTheme();
   return (
-    <Box flex={1} backgroundColor="white">
+    <Box flex={1} backgroundColor="background">
       <Box
         flex={1}
         borderBottomRightRadius="xl"
@@ -47,7 +46,7 @@ const Welcome = ({ navigation }: AuthNavigationProps<"Welcome">) => {
           bottom={0}
         />
         <Box
-          backgroundColor="white"
+          backgroundColor="background"
           justifyContent="space-evenly"
           borderTopLeftRadius="xl"
           alignItems="center"

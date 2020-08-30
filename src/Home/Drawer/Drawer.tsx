@@ -1,9 +1,12 @@
 import React from "react";
 import { Image, Dimensions } from "react-native";
-import { DrawerActions, useNavigation } from "@react-navigation/native";
-import { useTheme } from "@shopify/restyle";
+import {
+  DrawerActions,
+  useNavigation,
+  CommonActions,
+} from "@react-navigation/native";
 
-import { Box, Text, Header, Theme } from "../../components";
+import { Box, Text, Header, useTheme } from "../../components";
 
 import DrawerItem, { DrawerItemProps } from "./DrawerItem";
 
@@ -47,17 +50,23 @@ const items: DrawerItemProps[] = [
   {
     icon: "log-out",
     label: "Logout",
-    screen: "Logout",
+    onPress: (navigation) =>
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{ name: "Authentication" }],
+        })
+      ),
     color: "secondary",
   },
 ];
 
 const Drawer = () => {
   const navigation = useNavigation();
-  const theme = useTheme<Theme>();
+  const theme = useTheme();
   return (
     <Box flex={1}>
-      <Box flex={0.2} backgroundColor="white">
+      <Box flex={0.2} backgroundColor="background">
         <Box
           position="absolute"
           top={0}
@@ -88,7 +97,7 @@ const Drawer = () => {
           right={0}
           borderTopLeftRadius="xl"
           borderBottomRightRadius="xl"
-          backgroundColor="white"
+          backgroundColor="background"
           justifyContent="center"
           padding="xl"
         >
@@ -117,7 +126,7 @@ const Drawer = () => {
         </Box>
       </Box>
       <Box
-        backgroundColor="white"
+        backgroundColor="background"
         width={DRAWER_WIDTH}
         height={height * 0.41}
         overflow="hidden"
