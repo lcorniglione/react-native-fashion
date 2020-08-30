@@ -27,25 +27,25 @@ const items: DrawerItemProps[] = [
     icon: "heart",
     label: "Favourite Outfits",
     screen: "FavouriteOutfits",
-    color: "orange",
+    color: "drawer1",
   },
   {
     icon: "user",
     label: "Edit Profile",
-    screen: "EditProfile",
-    color: "yellow",
+    screen: "FavouriteOutfits",
+    color: "drawer2",
   },
   {
     icon: "clock",
     label: "Transaction History",
     screen: "TransactionHistory",
-    color: "pink",
+    color: "drawer3",
   },
   {
     icon: "settings",
     label: "Notification Settings",
-    screen: "NorificationSettings",
-    color: "violet",
+    screen: "FavouriteOutfits",
+    color: "drawer4",
   },
   {
     icon: "log-out",
@@ -120,8 +120,8 @@ const Drawer = () => {
               mike@flexinstudio.com
             </Text>
           </Box>
-          {items.map((item) => (
-            <DrawerItem key={item.screen} {...item} />
+          {items.map((item, i) => (
+            <DrawerItem key={i} {...item} />
           ))}
         </Box>
       </Box>

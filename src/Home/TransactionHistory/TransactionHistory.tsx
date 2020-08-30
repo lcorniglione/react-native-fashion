@@ -21,20 +21,20 @@ const data: DataPoint[] = [
   {
     date: new Date("2019-09-01").getTime(),
     value: 139.42,
-    color: "violet",
+    color: "primary",
     id: 245673,
   },
   {
     date: new Date("2019-12-01").getTime(),
     value: 281.23,
-    color: "yellow",
+    color: "graph1",
     id: 245672,
   },
 
   {
     date: new Date("2020-02-01").getTime(),
     value: 198.54,
-    color: "secondary",
+    color: "graph2",
     id: 245674,
   },
 ];

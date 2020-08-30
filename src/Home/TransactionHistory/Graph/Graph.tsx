@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useRef, useLayoutEffect } from "react";
 import { Dimensions } from "react-native";
 import moment from "moment";
+import {
+  Transitioning,
+  TransitioningView,
+  Transition,
+} from "react-native-reanimated";
 
 import { Theme, Box, useTheme } from "../../../components";
 
@@ -10,6 +15,15 @@ import { lerp } from "./Scale";
 const { width: wWidth } = Dimensions.get("window");
 
 const ASPECT_RATIO = 195 / 305;
+const transition = (
+  <Transition.Together>
+    <Transition.In
+      type="slide-bottom"
+      durationMs={650}
+      interpolation="easeInOut"
+    />
+  </Transition.Together>
+);
 
 export interface DataPoint {
   date: number;
@@ -25,6 +39,7 @@ interface GraphProps {
 }
 
 const Graph = ({ data, startDate, numberOfMonths }: GraphProps) => {
+  const ref = useRef<TransitioningView | null>(null);
   const theme = useTheme();
   const canvasWidth = wWidth - theme.spacing.m * 2;
   const canvasHeight = canvasWidth * ASPECT_RATIO;
@@ -34,6 +49,11 @@ const Graph = ({ data, startDate, numberOfMonths }: GraphProps) => {
   const values = data.map((p) => p.value);
   const minY = Math.min(...values);
   const maxY = Math.max(...values);
+
+  useLayoutEffect(() => {
+    ref.current?.animateNextTransition();
+  }, []);
+
   return (
     <Box paddingBottom={MARGIN} paddingLeft={MARGIN} marginTop="xl">
       <Underlay
@@ -43,7 +63,11 @@ const Graph = ({ data, startDate, numberOfMonths }: GraphProps) => {
         maxY={maxY}
         step={step}
       />
-      <Box width={width} height={height}>
+      <Transitioning.View
+        style={{ width: width, height: height, overflow: "hidden" }}
+        ref={ref}
+        transition={transition}
+      >
         {data.map((point) => {
           const i = moment(point.date).diff(moment(startDate), "month");
           return (
@@ -78,7 +102,7 @@ const Graph = ({ data, startDate, numberOfMonths }: GraphProps) => {
             </Box>
           );
         })}
-      </Box>
+      </Transitioning.View>
     </Box>
   );
 };
