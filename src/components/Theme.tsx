@@ -28,7 +28,7 @@ const theme = createTheme({
     text: "rgba(12, 13, 52, 0.7)",
     textContrast: palette.white,
     background: palette.white,
-    background2: "#F4F0EF",
+    background2: "#F6F6F6",
     graph1: palette.orange,
     graph2: palette.yellow,
     drawer1: palette.orange,

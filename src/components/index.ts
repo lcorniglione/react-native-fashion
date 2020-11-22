@@ -6,3 +6,5 @@ export { default as RoundedIcon } from "./RoundedIcon";
 export { default as RoundedIconButton } from "./RoundedIconButton";
 export { default as Header } from "./Header";
 export { default as BorderlessTap } from "./BorderlessTap";
+export { default as Content } from "./Content";
+export { default as ScrollableContent } from "./ScrollableContent";
