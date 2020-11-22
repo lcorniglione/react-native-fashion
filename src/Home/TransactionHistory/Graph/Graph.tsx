@@ -3,7 +3,7 @@ import { Dimensions, View } from "react-native";
 import moment from "moment";
 import Animated, { divide, multiply, sub } from "react-native-reanimated";
 import { useIsFocused } from "@react-navigation/native";
-import { useTransition } from "react-native-redash";
+import { useTransition } from "react-native-redash/lib/module/v1";
 
 import { Theme, Box, useTheme } from "../../../components";
 

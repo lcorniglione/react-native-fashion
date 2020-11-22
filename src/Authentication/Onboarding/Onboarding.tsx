@@ -1,10 +1,13 @@
 import React, { useRef } from "react";
 import { View, StyleSheet, Dimensions, Image } from "react-native";
-import { interpolateColor, useScrollHandler } from "react-native-redash";
+import {
+  interpolateColor,
+  useScrollHandler,
+} from "react-native-redash/lib/module/v1";
 import Animated, {
   multiply,
   divide,
-  interpolate,
+  interpolateNode,
   Extrapolate,
 } from "react-native-reanimated";
 
@@ -83,7 +86,7 @@ const Onboarding = ({ navigation }: AuthNavigationProps<"Onboarding">) => {
     <View style={styles.container}>
       <Animated.View style={[styles.slider, { backgroundColor }]}>
         {slides.map(({ picture }, i) => {
-          const opacity = interpolate(x, {
+          const opacity = interpolateNode(x, {
             inputRange: [(i - 0.5) * width, i * width, (i + 0.5) * width],
             outputRange: [0, 1, 0],
             extrapolate: Extrapolate.CLAMP,

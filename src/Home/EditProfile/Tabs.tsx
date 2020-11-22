@@ -2,7 +2,7 @@ import React, { Children, ReactNode, useState } from "react";
 import { Dimensions } from "react-native";
 import { RectButton } from "react-native-gesture-handler";
 import Animated, { multiply } from "react-native-reanimated";
-import { mix, useTransition } from "react-native-redash";
+import { mix, useTransition } from "react-native-redash/lib/module/v1";
 
 import { Box, Text, useTheme } from "../../components";
 

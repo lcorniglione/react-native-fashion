@@ -10,7 +10,11 @@ import Animated, {
   call,
 } from "react-native-reanimated";
 import { State } from "react-native-gesture-handler";
-import { useClock, useValue, snapPoint } from "react-native-redash";
+import {
+  useClock,
+  useValue,
+  snapPoint,
+} from "react-native-redash/lib/module/v1";
 
 interface WithSpringParams {
   value: Animated.Node<number>;
