@@ -1,7 +1,8 @@
 import { BoxProps } from "@shopify/restyle";
 import React, { ReactNode } from "react";
+import { BorderlessButton } from "react-native-gesture-handler";
 
-import { BorderlessTap, Box, Theme } from "../../components";
+import { Box, Theme } from "../../components";
 
 interface CardLayoutProps {
   children: ReactNode;
@@ -15,7 +16,7 @@ const CardLayout = ({
   backgroundColor,
 }: CardLayoutProps) => {
   return (
-    <BorderlessTap onPress={onPress}>
+    <BorderlessButton onPress={onPress}>
       <Box
         padding="m"
         marginLeft="m"
@@ -26,7 +27,7 @@ const CardLayout = ({
       >
         {children}
       </Box>
-    </BorderlessTap>
+    </BorderlessButton>
   );
 };
 

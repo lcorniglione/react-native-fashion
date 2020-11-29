@@ -23,7 +23,9 @@ interface CardProps {
   onSelect: () => void;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const visaLogo = require("./assets/visa-logo.png");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const mastercardLogo = require("./assets/mastercard-logo.png");
 
 const Card = ({ card, selected, onSelect }: CardProps) => {
